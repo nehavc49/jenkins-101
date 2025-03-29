@@ -1,17 +1,17 @@
 pipeline {
     agent any
-    stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', credentialsId: 'your-credentials-id', url: 'https://github.com/nehavc49/jenkins-101'
-            }
-        }
-    }
-}
+    
     triggers {
         pollSCM('* * * * *')  // Check Git repo every minute
     }
+
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/nehavc49/jenkins-101'
+            }
+        }
+
         stage('Build') {
             steps {
                 echo "Building.."
@@ -21,6 +21,7 @@ pipeline {
                 '''
             }
         }
+
         stage('Test') {
             steps {
                 echo "Testing.."
@@ -31,6 +32,7 @@ pipeline {
                 '''
             }
         }
+
         stage('Deliver') {
             steps {
                 echo 'Deliver....'
@@ -41,3 +43,4 @@ pipeline {
         }
     }
 }
+
