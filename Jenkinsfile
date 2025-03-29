@@ -1,15 +1,6 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
-            steps {
-                bat 'echo Building...'  // Use "bat" for Windows batch commands
-            }
-        }
-    }
-}
-
-    stages {
         stage('Checkout') {
             steps {
                 git branch: 'master', url: 'https://github.com/nehavc49/jenkins-101'
@@ -47,4 +38,3 @@ pipeline {
         }
     }
 }
-
