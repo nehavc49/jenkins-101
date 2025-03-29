@@ -1,9 +1,13 @@
 pipeline {
     agent any
-    
-    triggers {
-        pollSCM('* * * * *')  // Check Git repo every minute
+    stages {
+        stage('Build') {
+            steps {
+                bat 'echo Building...'  // Use "bat" for Windows batch commands
+            }
+        }
     }
+}
 
     stages {
         stage('Checkout') {
