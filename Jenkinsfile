@@ -1,9 +1,13 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.8'  // Runs inside a Python 3.8 container
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', credentialsId: 'your-credentials-id', url: 'https://github.com/nehavc49/jenkins-101'
+            }
         }
     }
+}
     triggers {
         pollSCM('* * * * *')  // Check Git repo every minute
     }
