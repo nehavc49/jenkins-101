@@ -1,11 +1,11 @@
 pipeline {
-    agent { 
-        node {
-            label 'docker-agent-python'
-            }
-      }
+    agent {
+        docker {
+            image 'python:3.8'  // Runs inside a Python 3.8 container
+        }
+    }
     triggers {
-        pollSCM '* * * * *'
+        pollSCM('* * * * *')  // Check Git repo every minute
     }
     stages {
         stage('Build') {
